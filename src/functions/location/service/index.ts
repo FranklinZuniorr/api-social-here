@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { LocationDataBase } from "../database";
-import { CreateLocation } from "../interfaces";
+import { CreateLocation, NewLocationResponse } from "../interfaces";
 import { LocationEntityValidation } from "../entity";
 import { MessageResponse } from "../../../interfaces";
 
@@ -11,7 +11,7 @@ export class LocationService {
         this.dataBase = dataBase2;
     }
 
-    async new(req: Request, res: Response<MessageResponse>) {
+    async new(req: Request, res: Response<MessageResponse | NewLocationResponse>) {
         const body: CreateLocation = req.body;
         
         try {
@@ -24,8 +24,8 @@ export class LocationService {
                     res.status(400).send({ message: 'UserName already in use!' });
                 }
             } catch (error) {
-                await this.dataBase.newLocation(location);
-                res.status(201).send({ message: 'Location successfully created!' });
+                const newLocation = await this.dataBase.newLocation(location);
+                res.status(201).send({ message: 'Location successfully created!', locationId: newLocation._id.toHexString() });
             }
         } catch (error: any) {
             res.status(400).send({ message: error.message });
