@@ -16,8 +16,17 @@ export class LocationService {
         
         try {
             const location: CreateLocation = new LocationEntityValidation(body).get();
-            await this.dataBase.newLocation(location);
-            res.status(201).send({ message: 'Location successfully created!' });
+
+            try {
+                const existLocationUserName = await this.dataBase.getByUserName(location.userName);
+    
+                if(existLocationUserName) {
+                    res.status(400).send({ message: 'UserName already in use!' });
+                }
+            } catch (error) {
+                await this.dataBase.newLocation(location);
+                res.status(201).send({ message: 'Location successfully created!' });
+            }
         } catch (error: any) {
             res.status(400).send({ message: error.message });
         }
