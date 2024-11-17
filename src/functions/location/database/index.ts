@@ -17,4 +17,18 @@ export class LocationDataBase {
             throw new Error("newLocation - dataBase error");
         }
     }
+
+    async getByUserName(search: string): Promise<Location> {
+        try {
+            const location = await this.model.findOne({ userName: search });
+
+            if (location) {
+                return location.toObject();
+            }
+
+            throw new Error("UserName not found!");
+        } catch (error: any) {
+            throw new Error(`getByUserName - dataBase error - ${error.message}`);
+        }
+    }
 }

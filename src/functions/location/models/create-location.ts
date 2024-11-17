@@ -39,4 +39,6 @@ export type LocationModelType = Model<Location>;
 
 const LocationModel: Model<Location> = mongoose.model<Location>('Location', LocationSchema);
 
+LocationModel.createIndexes();
+
 export default LocationModel;
