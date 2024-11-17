@@ -9,25 +9,31 @@ export interface Location {
   };
 }
 
-const LocationSchema: Schema<Location & Document> = new Schema({
-  userName: {
-    type: String,
-    required: true,
-  },
-  location: {
-    type: {
+const LocationSchema: Schema<Location & Document> = new Schema(
+  {
+    userName: {
       type: String,
-      enum: [ENUM_LOCATION_TYPE.POINT],
       required: true,
     },
-    coordinates: {
-      type: [Number],
-      required: true,
+    location: {
+      type: {
+        type: String,
+        enum: [ENUM_LOCATION_TYPE.POINT],
+        required: true,
+      },
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
     },
   },
-});
+  {
+    timestamps: true
+  }
+);
 
 LocationSchema.index({ location: '2dsphere' });
+LocationSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 });
 
 export type LocationModelType = Model<Location>;
 
