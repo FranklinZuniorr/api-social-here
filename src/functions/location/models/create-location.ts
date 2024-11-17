@@ -1,14 +1,15 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
+import { ENUM_LOCATION_TYPE } from '../constants';
 
-interface Location extends Document {
+export interface Location {
   userName: string;
   location: {
-    type: 'Point';
+    type: ENUM_LOCATION_TYPE.POINT;
     coordinates: [number, number];
   };
 }
 
-const LocationSchema: Schema<Location> = new Schema({
+const LocationSchema: Schema<Location & Document> = new Schema({
   userName: {
     type: String,
     required: true,
@@ -16,7 +17,7 @@ const LocationSchema: Schema<Location> = new Schema({
   location: {
     type: {
       type: String,
-      enum: ['Point'],
+      enum: [ENUM_LOCATION_TYPE.POINT],
       required: true,
     },
     coordinates: {
