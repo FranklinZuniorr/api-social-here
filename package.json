@@ -24,8 +24,6 @@
     "mongoose": "^8.6.1",
     "netlify-cli": "^17.35.0",
     "netlify-lambda": "^2.0.16",
-    "puppeteer": "^23.3.0",
-    "puppeteer-core": "^23.3.0",
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
