@@ -1,5 +1,5 @@
 import { ENUM_LOCATION_TYPE } from "../constants";
-import { CreateLocation } from "../interfaces";
+import { CreateLocation, NewLocationDataBaseResponse } from "../interfaces";
 import { Location, LocationModelType } from "../models/create-location";
 
 export class LocationDataBase {
@@ -9,10 +9,10 @@ export class LocationDataBase {
         this.model = model;
     }
 
-    async newLocation(params: CreateLocation): Promise<void> {
+    async newLocation(params: CreateLocation): Promise<NewLocationDataBaseResponse> {
         try {
             const location: Location = { ...params, location: { ...params.location, type: ENUM_LOCATION_TYPE.POINT } };
-            await this.model.create(location);
+            return (await this.model.create(location)).toObject();
         } catch (error) {
             throw new Error("newLocation - dataBase error");
         }
