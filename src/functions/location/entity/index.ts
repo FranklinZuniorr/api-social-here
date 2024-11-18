@@ -1,4 +1,4 @@
-import { CreateLocation } from "../interfaces";
+import { CreateLocation, UpdateLocation } from "../interfaces";
 
 export class LocationEntityValidation {
     private entity: CreateLocation;

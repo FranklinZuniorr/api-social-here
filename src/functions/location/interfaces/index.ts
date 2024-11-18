@@ -9,6 +9,11 @@ export interface CreateLocation {
     };
 };
 
+export interface UpdateLocation {
+    locationId: Types.ObjectId;
+    coordinates: [number, number];
+}
+
 export interface NewLocationResponse extends MessageResponse {
     locationId: string;
 }
