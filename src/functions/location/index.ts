@@ -8,8 +8,9 @@ const dataBase: LocationDataBase = new LocationDataBase(LocationModel);
 const service: LocationService = new LocationService(dataBase);
 
 locationRouter.get('', (req: Request, res: Response) => {
-    
-    res.send("OI");
+    res.send("Working!");
 })
 
 locationRouter.post('/new-location', (req: Request, res: Response) => service.new(req, res));
+locationRouter.put('/location', (req: Request, res: Response) => service.update(req, res));
+locationRouter.get('/locations-by-coordinates', (req: Request, res: Response) => service.getByCoordinates(req, res));
