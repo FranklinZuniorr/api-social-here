@@ -1,5 +1,5 @@
 import { ENUM_LOCATION_TYPE } from "../constants";
-import { CreateLocation, NewLocationDataBaseResponse, UpdateLocation } from "../interfaces";
+import { CreateLocation, GetByCoordinates, NewLocationDataBaseResponse, UpdateLocation } from "../interfaces";
 import { Location, LocationModelType } from "../models/create-location";
 
 export class LocationDataBase {
@@ -47,6 +47,29 @@ export class LocationDataBase {
             throw new Error("UserName not found!");
         } catch (error: any) {
             throw new Error(`getByUserName - dataBase error - ${error.message}`);
+        }
+    }
+
+    async getByCoordinates(params: GetByCoordinates): Promise<Location[]> {
+        try {
+            const earthRadiusInKm = 6378.1;
+            const radiusInRadians = params.radiusInKm / earthRadiusInKm;
+
+            try {
+                const locations: Location[] = (await this.model.find({
+                    location: {
+                    $geoWithin: {
+                        $centerSphere: [params.coordinates, radiusInRadians],
+                    },
+                    },
+                })).map(location => location.toObject());
+    
+                return locations;
+            } catch (error: any) {
+                throw new Error(error.message);
+            }
+        } catch (error: any) {
+            throw new Error(`getByCoordinates - dataBase error - ${error.message}`);
         }
     }
 }

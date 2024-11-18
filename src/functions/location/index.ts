@@ -13,3 +13,4 @@ locationRouter.get('', (req: Request, res: Response) => {
 
 locationRouter.post('/new-location', (req: Request, res: Response) => service.new(req, res));
 locationRouter.put('/location', (req: Request, res: Response) => service.update(req, res));
+locationRouter.get('/locations-by-coordinates', (req: Request, res: Response) => service.getByCoordinates(req, res));
