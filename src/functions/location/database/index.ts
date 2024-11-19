@@ -1,4 +1,4 @@
-import { ENUM_LOCATION_TYPE } from "../constants";
+import { ENUM_LOCATION_TYPE } from "../../../constants";
 import { CreateLocation, GetByCoordinates, NewLocationDataBaseResponse, UpdateLocation } from "../interfaces";
 import { Location, LocationModelType } from "../models/create-location";
 

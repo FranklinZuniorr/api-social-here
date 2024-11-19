@@ -7,6 +7,7 @@ import path from 'path';
 import serverless from 'serverless-http';
 import connectDB from '../infrastructure/mongoose';
 import { locationRouter } from './location';
+import { chatRouter } from './chat';
 const router = express.Router();
 
 dotenv.config();
@@ -26,6 +27,7 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 const port = process.env.PORT || 3000;
 
 router.use('/locations/', locationRouter);
+router.use('/chats/', chatRouter);
 
 app.use('/api/', router);
 app.listen(port);

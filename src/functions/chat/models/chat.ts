@@ -1,17 +1,22 @@
 import mongoose, { Schema, Document, Model } from 'mongoose';
 import { ENUM_LOCATION_TYPE } from '../../../constants';
 
-export interface Location {
+export interface Chat {
   userName: string;
+  message: string;
   location: {
     type: ENUM_LOCATION_TYPE.POINT;
     coordinates: [number, number];
   };
 }
 
-const LocationSchema: Schema<Location & Document> = new Schema(
+const ChatSchema: Schema<Chat & Document> = new Schema(
   {
     userName: {
+      type: String,
+      required: true,
+    },
+    message: {
       type: String,
       required: true,
     },
@@ -32,13 +37,13 @@ const LocationSchema: Schema<Location & Document> = new Schema(
   }
 );
 
-LocationSchema.index({ location: '2dsphere' });
-LocationSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 });
+ChatSchema.index({ location: '2dsphere' });
+ChatSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 });
 
-export type LocationModelType = Model<Location>;
+export type ChatModelType = Model<Chat>;
 
-const LocationModel: Model<Location> = mongoose.model<Location>('Location', LocationSchema);
+const ChatModel: Model<Chat> = mongoose.model<Chat>('Chat', ChatSchema);
 
-LocationModel.createIndexes();
+ChatModel.createIndexes();
 
-export default LocationModel;
+export default ChatModel;

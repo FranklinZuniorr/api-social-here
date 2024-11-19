@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
 import { MessageResponse } from "../../../interfaces";
-import { ENUM_LOCATION_TYPE } from "../constants";
 import { Location } from "../models/create-location";
+import { ENUM_LOCATION_TYPE } from "../../../constants";
 
 export interface CreateLocation {
     userName: string;
