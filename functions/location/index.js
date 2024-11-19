@@ -12,6 +12,8 @@ exports.locationRouter = (0, express_1.Router)();
 const dataBase = new database_1.LocationDataBase(create_location_1.default);
 const service = new service_1.LocationService(dataBase);
 exports.locationRouter.get('', (req, res) => {
-    res.send("OI");
+    res.send("Working!");
 });
 exports.locationRouter.post('/new-location', (req, res) => service.new(req, res));
+exports.locationRouter.put('/location', (req, res) => service.update(req, res));
+exports.locationRouter.get('/locations-by-coordinates', (req, res) => service.getByCoordinates(req, res));

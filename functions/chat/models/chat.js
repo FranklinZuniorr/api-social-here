@@ -25,8 +25,12 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
 const constants_1 = require("../../../constants");
-const LocationSchema = new mongoose_1.Schema({
+const ChatSchema = new mongoose_1.Schema({
     userName: {
+        type: String,
+        required: true,
+    },
+    message: {
         type: String,
         required: true,
     },
@@ -44,8 +48,8 @@ const LocationSchema = new mongoose_1.Schema({
 }, {
     timestamps: true
 });
-LocationSchema.index({ location: '2dsphere' });
-LocationSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 });
-const LocationModel = mongoose_1.default.model('Location', LocationSchema);
-LocationModel.createIndexes();
-exports.default = LocationModel;
+ChatSchema.index({ location: '2dsphere' });
+ChatSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 });
+const ChatModel = mongoose_1.default.model('Chat', ChatSchema);
+ChatModel.createIndexes();
+exports.default = ChatModel;
