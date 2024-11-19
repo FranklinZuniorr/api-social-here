@@ -1,13 +1,18 @@
-import { CreateLocation } from "../interfaces";
+import { CreateChat } from "../interfaces";
 
-export class LocationEntityValidation {
-    private entity: CreateLocation;
+export class ChatEntityValidation {
 
-    constructor(params: CreateLocation) {
+    private entity: CreateChat;
+
+    constructor(params: CreateChat) {
         this.entity = this.validate(params);
     }
 
-    private validate(params: CreateLocation): CreateLocation {
+    private validate(params: CreateChat): CreateChat {
+
+        if (!params.message) {
+            throw new Error("Message is required!");
+        }
 
         if (!params.userName) {
             throw new Error("Username is required!");
@@ -40,7 +45,7 @@ export class LocationEntityValidation {
         return params;
     }
 
-    get(): CreateLocation {
-        return this.entity
+    get(): CreateChat {
+        return this.entity;
     }
 }
