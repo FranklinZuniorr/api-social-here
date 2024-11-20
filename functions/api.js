@@ -26,7 +26,6 @@ app.use((0, cors_1.default)({
 app.use(express_1.default.json());
 app.use((0, compression_1.default)());
 app.use(body_parser_1.default.json({ limit: '50mb' }));
-app.use(body_parser_1.default.urlencoded({ limit: '50mb', extended: true }));
 const port = process.env.PORT || 3000;
 router.use('/locations/', location_1.locationRouter);
 router.use('/chats/', chat_1.chatRouter);

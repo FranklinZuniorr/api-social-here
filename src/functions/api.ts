@@ -24,7 +24,6 @@ app.use(cors({
 app.use(express.json());
 app.use(compression());
 app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 const port = process.env.PORT || 3000;
 
 router.use('/locations/', locationRouter);
