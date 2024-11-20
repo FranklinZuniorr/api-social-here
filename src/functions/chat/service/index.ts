@@ -27,10 +27,10 @@ export class ChatServie {
     }
 
     async getByCoordinates(req: Request, res: Response<GetByCoordinatesResponse | MessageResponse>) {
-        const body: GetByCoordinates = req.body;
+        const { coordinates, radiusInKm } = req.query as unknown as GetByCoordinates;
 
         try {
-            const query: GetByCoordinates = new Validators().validateGetByCoordinates(body);
+            const query: GetByCoordinates = new Validators().validateGetByCoordinates({ coordinates, radiusInKm });
             const chats: Chat[] = await this.dataBase.getByCoordinates(query);
             
             res.status(200).send({ chats });
