@@ -52,9 +52,9 @@ class LocationService {
     }
     getByCoordinates(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const body = req.body;
+            const { coordinates, radiusInKm } = req.query;
             try {
-                const query = new helpers_1.Validators().validateGetByCoordinates(body);
+                const query = new helpers_1.Validators().validateGetByCoordinates({ coordinates, radiusInKm });
                 const locations = yield this.dataBase.getByCoordinates(query);
                 res.status(200).send({ locations });
             }

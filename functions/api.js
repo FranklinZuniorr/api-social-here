@@ -23,6 +23,7 @@ app.use(express_1.default.static(path_1.default.join(__dirname, '../public'), {
 app.use((0, cors_1.default)({
     origin: '*'
 }));
+app.use(express_1.default.json());
 app.use((0, compression_1.default)());
 app.use(body_parser_1.default.json({ limit: '50mb' }));
 app.use(body_parser_1.default.urlencoded({ limit: '50mb', extended: true }));
