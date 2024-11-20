@@ -35,7 +35,7 @@ class ChatDataBase {
                     const chats = (yield this.model.find({
                         location: {
                             $geoWithin: {
-                                $centerSphere: [params.coordinates, radiusInRadians],
+                                $centerSphere: [[params.lat, params.long], radiusInRadians],
                             },
                         },
                     })).map(chat => chat.toObject());

@@ -47,10 +47,10 @@ export class LocationService {
     }
 
     async getByCoordinates(req: Request, res: Response<GetByCoordinatesResponse | MessageResponse>) {
-        const { coordinates, radiusInKm } = req.query as unknown as GetByCoordinates;
+        const { lat, long, radiusInKm } = req.query as unknown as GetByCoordinates;
 
         try {
-            const query: GetByCoordinates = new Validators().validateGetByCoordinates({ coordinates, radiusInKm });
+            const query: GetByCoordinates = new Validators().validateGetByCoordinates({ lat, long, radiusInKm });
             const locations: Location[] = await this.dataBase.getByCoordinates(query);
             
             res.status(200).send({ locations });

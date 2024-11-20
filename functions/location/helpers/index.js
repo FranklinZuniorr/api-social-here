@@ -18,14 +18,11 @@ class Validators {
         return params;
     }
     validateGetByCoordinates(params) {
-        if (!params.coordinates) {
-            throw new Error("Coordinates is required!");
+        if (!params.lat) {
+            throw new Error("Lat is required!");
         }
-        if (!Array.isArray(params.coordinates)) {
-            throw new Error('Coordinates should be one array!');
-        }
-        if (params.coordinates.length < 2) {
-            throw new Error('Lat and long are required!');
+        if (!params.long) {
+            throw new Error("Long is required!");
         }
         if (!params.radiusInKm) {
             throw new Error('RadiusInKm is required!');

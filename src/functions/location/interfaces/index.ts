@@ -16,7 +16,8 @@ export interface UpdateLocation {
 }
 
 export interface GetByCoordinates {
-    coordinates: [number, number];
+    lat: number;
+    long: number;
     radiusInKm: number;
 }
 

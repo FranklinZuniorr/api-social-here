@@ -9,7 +9,8 @@ export interface CreateChat {
 };
 
 export interface GetByCoordinates {
-    coordinates: [number, number];
+    lat: number;
+    long: number;
     radiusInKm: number;
 }
 

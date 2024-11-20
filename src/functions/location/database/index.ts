@@ -59,7 +59,7 @@ export class LocationDataBase {
                 const locations: Location[] = (await this.model.find({
                     location: {
                     $geoWithin: {
-                        $centerSphere: [params.coordinates, radiusInRadians],
+                        $centerSphere: [[params.lat, params.long], radiusInRadians],
                     },
                     },
                 })).map(location => location.toObject());
