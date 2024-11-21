@@ -33,7 +33,7 @@ const LocationSchema: Schema<Location & Document> = new Schema(
 );
 
 LocationSchema.index({ location: '2dsphere' });
-LocationSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 });
+LocationSchema.index({ updatedAt: 1 }, { expireAfterSeconds: 3600 });
 
 export type LocationModelType = Model<Location>;
 
