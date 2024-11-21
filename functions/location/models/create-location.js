@@ -45,7 +45,7 @@ const LocationSchema = new mongoose_1.Schema({
     timestamps: true
 });
 LocationSchema.index({ location: '2dsphere' });
-LocationSchema.index({ createdAt: 1 }, { expireAfterSeconds: 3600 });
+LocationSchema.index({ updatedAt: 1 }, { expireAfterSeconds: 3600 });
 const LocationModel = mongoose_1.default.model('Location', LocationSchema);
 LocationModel.createIndexes();
 exports.default = LocationModel;
