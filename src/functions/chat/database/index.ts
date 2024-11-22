@@ -32,7 +32,7 @@ export class ChatDataBase {
                         $centerSphere: [[params.lat, params.long], radiusInRadians],
                     },
                     },
-                }).sort({ _id: -1 })).map(chat => chat.toObject());
+                }).sort({ _id: 1 })).map(chat => chat.toObject());
     
                 return chats;
             } catch (error: any) {
